@@ -251,6 +251,10 @@ def do_one(url, base_url):
             if '?title=9' in href:
                 # probably spam - this maynot be a good huerstic
                 continue
+            if '?title=Special:' in href:  # likely to link to spam
+                continue
+            if '?title=User:' in href:  # likely to link to spam
+                continue
             if '&diff=' in href:
                 continue
             if '&action=' in href:  # edit and history seen so far
