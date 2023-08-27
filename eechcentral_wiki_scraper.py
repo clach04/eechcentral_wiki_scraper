@@ -282,54 +282,63 @@ def do_one(url, base_url):
     return new_links_found
     
 
-# TODO can I make use of:
-#   * http://eechcentral.simhq.com//index.php?title=Special:AllPages
-#   * http://eechcentral.simhq.com/index.php?title=Special:AllPages&from=10+Facts+About+Railroad+Cancer+That+Will+Instantly+Bring+You+To+A+Happy+Mood
-#   .... loop on
-# All pages | Previous page (007 100 GGKING23) | Next page (10 Q
-# 
-base_url = 'http://eechcentral.simhq.com/'
-url = 'http://eechcentral.simhq.com/index.php?title=Engine_startup'
-url = 'http://eechcentral.simhq.com/index.php?title=Engine_startup&printable=yes' # appears to be older version of MediaWiki
-urls[url] = False
-urls['http://eechcentral.simhq.com/index.php?title=Main_Page&oldid=1935'] = False
-url_count = 0
-loop_count = 0
-while True:
-    try:
-        new_links_found = False
-        loop_count += 1
-        for url in list(urls.keys()):
-            url_lower = url.lower()
-            if url_lower.endswith('.gif') or url_lower.endswith('.jpeg') or url_lower.endswith('.jpg') or url_lower.endswith('.png'):
-                # this does't work when oldid param present
-                continue
-            if 'eechcentral.simhq.com' not in url_lower:
-                continue
-            if not urls[url]:
-                url_count += 1
-                print(url_count)
-                new_links_found = new_links_found or do_one(url, base_url=base_url)
-        #import pdb; pdb.set_trace()
-        if not new_links_found:
-            print('no new_links_found')
-            break
-        if loop_count >= 1000:
-            print('loop_count reached')
-            break
-        """
-        if url_count >= 2:
-            break
-        """
-    except KeyboardInterrupt:
-        # ctrl-c
-        print('search cancelled')
-        break
-#print(json.dumps(urls, indent=4))
-print(url_count)
-print(len(urls))
-print(loop_count)
-f = open('eech_wiki_links.json', 'wb')
-f.write(json.dumps(urls, indent=4).encode('utf-8'))
-f.close()
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
 
+    # TODO can I make use of:
+    #   * http://eechcentral.simhq.com//index.php?title=Special:AllPages
+    #   * http://eechcentral.simhq.com/index.php?title=Special:AllPages&from=10+Facts+About+Railroad+Cancer+That+Will+Instantly+Bring+You+To+A+Happy+Mood
+    #   .... loop on
+    # All pages | Previous page (007 100 GGKING23) | Next page (10 Q
+    # 
+    base_url = 'http://eechcentral.simhq.com/'
+    url = 'http://eechcentral.simhq.com/index.php?title=Engine_startup'
+    url = 'http://eechcentral.simhq.com/index.php?title=Engine_startup&printable=yes' # appears to be older version of MediaWiki
+    urls[url] = False
+    urls['http://eechcentral.simhq.com/index.php?title=Main_Page&oldid=1935'] = False
+    url_count = 0
+    loop_count = 0
+    while True:
+        try:
+            new_links_found = False
+            loop_count += 1
+            for url in list(urls.keys()):
+                url_lower = url.lower()
+                if url_lower.endswith('.gif') or url_lower.endswith('.jpeg') or url_lower.endswith('.jpg') or url_lower.endswith('.png'):
+                    # this does't work when oldid param present
+                    continue
+                if 'eechcentral.simhq.com' not in url_lower:
+                    continue
+                if not urls[url]:
+                    url_count += 1
+                    print(url_count)
+                    new_links_found = new_links_found or do_one(url, base_url=base_url)
+            #import pdb; pdb.set_trace()
+            if not new_links_found:
+                print('no new_links_found')
+                break
+            if loop_count >= 1000:
+                print('loop_count reached')
+                break
+            """
+            if url_count >= 2:
+                break
+            """
+        except KeyboardInterrupt:
+            # ctrl-c
+            print('search cancelled')
+            break
+    #print(json.dumps(urls, indent=4))
+    print(url_count)
+    print(len(urls))
+    print(loop_count)
+    f = open('eech_wiki_links.json', 'wb')
+    f.write(json.dumps(urls, indent=4).encode('utf-8'))
+    f.close()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
