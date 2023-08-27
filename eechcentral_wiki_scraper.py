@@ -255,6 +255,10 @@ def do_one(url, base_url):
                 continue
             if '?title=User:' in href:  # likely to link to spam
                 continue
+            if 'title=User_talk:' in href:  # likely to link to spam
+                continue
+            if '&direction=' in href:  # likely to link to spam
+                continue
             if '&diff=' in href:
                 continue
             if '&action=' in href:  # edit and history seen so far
