@@ -35,7 +35,7 @@ from bs4 import BeautifulSoup
 
 __version__ = '0.0.1'
 
-log = logging.getLogger("w2d")
+log = logging.getLogger("eech")
 log.setLevel(logging.DEBUG)
 disable_logging = False
 #disable_logging = True
