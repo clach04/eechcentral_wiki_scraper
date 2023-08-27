@@ -253,8 +253,8 @@ def do_one(url, base_url):
                 continue
             if '&diff=' in href:
                 continue
-            if '&action=edit' in href:
-                continue
+            if '&action=' in href:  # edit and history seen so far
+                href = href[:href.find('&action=')]
             if '&oldid=' in href:
                 # terribe assumption, assume last paramter
                 href = href[:href.find('&oldid=')]
