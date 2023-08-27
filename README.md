@@ -1,5 +1,11 @@
 Attempt to to recover data from wiki, ignoring the spam.
 
+
+## Getting Started
+
+    python -m pip install -r requirements.txt
+
+
 Interesting pages:
 
 http://eechcentral.simhq.com/index.php?title=Special:MostLinkedPages
