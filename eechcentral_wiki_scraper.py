@@ -251,9 +251,9 @@ def do_one(url, base_url):
             if '?title=9' in href:
                 # probably spam - this maynot be a good huerstic
                 continue
-            if '&action=edit' in href:
-                continue
             if '&diff=' in href:
+                continue
+            if '&action=edit' in href:
                 continue
             if '&oldid=' in href:
                 # terribe assumption, assume last paramter
