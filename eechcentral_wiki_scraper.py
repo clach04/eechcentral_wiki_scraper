@@ -318,7 +318,7 @@ while True:
         # ctrl-c
         print('search cancelled')
         break
-print(json.dumps(urls, indent=4))
+#print(json.dumps(urls, indent=4))
 print(url_count)
 print(len(urls))
 print(loop_count)
