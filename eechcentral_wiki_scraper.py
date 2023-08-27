@@ -288,6 +288,7 @@ base_url = 'http://eechcentral.simhq.com/'
 url = 'http://eechcentral.simhq.com/index.php?title=Engine_startup'
 url = 'http://eechcentral.simhq.com/index.php?title=Engine_startup&printable=yes' # appears to be older version of MediaWiki
 urls[url] = False
+urls['http://eechcentral.simhq.com/index.php?title=Main_Page&oldid=1935'] = False
 url_count = 0
 loop_count = 0
 while True:
