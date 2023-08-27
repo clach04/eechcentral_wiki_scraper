@@ -307,8 +307,10 @@ while True:
                 new_links_found = new_links_found or do_one(url, base_url=base_url)
         #import pdb; pdb.set_trace()
         if not new_links_found:
+            print('no new_links_found')
             break
         if loop_count >= 1000:
+            print('loop_count reached')
             break
         """
         if url_count >= 2:
